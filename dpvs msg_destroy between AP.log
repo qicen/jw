@@ -1,0 +1,397 @@
+﻿[Switching to Thread 0x7ffff7fddd80 (LWP 57119)]
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x7fffffffce80) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x7fffffffce80) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x000000000060687c in multicast_msg_send (msg=0x135584c8c, flags=flags@entry=1, reply=reply@entry=0x0)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:584
+#2  0x000000000067b961 in route_add_del (metric=0, mtu=0, src=0x0, port=<optimized out>, gw=0x0, flag=<optimized out>, 
+    netmask=<optimized out>, dest=0x1376002ec, add=true) at /root/dpdk-dpvs/dpvs/dpvs/src/route.c:386
+#3  route_add (dest=dest@entry=0x1376002ec, netmask=netmask@entry=32 ' ', flag=flag@entry=2048, gw=gw@entry=0x0, port=0x10587cc40, 
+    src=src@entry=0x0, mtu=mtu@entry=0, metric=metric@entry=0) at /root/dpdk-dpvs/dpvs/dpvs/src/route.c:399
+#4  0x0000000000610569 in ifa_add_route4 (ifa=0x1376002c0) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:545
+#5  ifa_add_route (ifa=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:608
+#6  ifa_entry_add (param=param@entry=0x7fffffffd120) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:846
+#7  0x0000000000612ba8 in __inet_addr_add (param=0x7fffffffd120) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1263
+#8  inet_addr_add (flags=<optimized out>, scope=<optimized out>, prefered_lft=<optimized out>, valid_lft=<optimized out>, 
+    bcast=0x137600444, plen=<optimized out>, addr=0x137600434, dev=<optimized out>, af=<optimized out>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1300
+#9  ifa_sockopt_set (opt=<optimized out>, conf=0x137600418, size=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1673
+#10 0x0000000000604167 in sockopt_ctl (arg=0x0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:1371
+#11 sockopt_job_func (dummy=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:1411
+#12 0x000000000067d8e7 in do_lcore_job (job=0x97a680 <sockopt_job>, job=0x97a680 <sockopt_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#13 dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#14 0x000000000040ecc5 in main (argc=<optimized out>, argv=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/main.c:338
+(gdb) p *pmsg
+$95 = (struct dpvs_msg *) 0x135584f0c
+(gdb) p **pmsg
+$96 = {mq_node = {next = 0x0, prev = 0x0}, type = 6, seq = 2, mode = DPVS_MSG_UNICAST, cid = 0 '\000', flags = 9, refcnt = {cnt = 2}, 
+  lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 85, data = 0x135584f50 ""}
+(gdb) c
+Continuing.
+[Switching to Thread 0x7ffff5404700 (LWP 57125)]
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x7ffff54016e0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x7ffff54016e0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x0000000000605f6a in msg_slave_process (step=0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:784
+#2  0x000000000067d8e7 in do_lcore_job (job=0x97a700 <msg_slave_job>, job=0x97a700 <msg_slave_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#3  dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#4  0x000000000055a744 in eal_thread_loop ()
+#5  0x00007ffff6e14ea5 in start_thread () from /lib64/libpthread.so.0
+#6  0x00007ffff69319fd in clone () from /lib64/libc.so.6
+(gdb) p *pmsg
+$97 = (struct dpvs_msg *) 0x1350019cc
+(gdb) p **pmsg
+$98 = {mq_node = {next = 0x0, prev = 0x0}, type = 6, seq = 2, mode = DPVS_MSG_UNICAST, cid = 1 '\001', flags = 1, refcnt = {cnt = 2}, 
+  lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 0, data = 0x135001a10 ""}
+(gdb) c
+Continuing.
+[Switching to Thread 0x7ffff7fddd80 (LWP 57119)]
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x7fffffffcf20) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x7fffffffcf20) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x000000000067b96f in route_add_del (metric=0, mtu=0, src=0x0, port=<optimized out>, gw=0x0, flag=<optimized out>, 
+    netmask=<optimized out>, dest=0x1376002ec, add=true) at /root/dpdk-dpvs/dpvs/dpvs/src/route.c:390
+#2  route_add (dest=dest@entry=0x1376002ec, netmask=netmask@entry=32 ' ', flag=flag@entry=2048, gw=gw@entry=0x0, port=0x10587cc40, 
+    src=src@entry=0x0, mtu=mtu@entry=0, metric=metric@entry=0) at /root/dpdk-dpvs/dpvs/dpvs/src/route.c:399
+#3  0x0000000000610569 in ifa_add_route4 (ifa=0x1376002c0) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:545
+#4  ifa_add_route (ifa=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:608
+#5  ifa_entry_add (param=param@entry=0x7fffffffd120) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:846
+#6  0x0000000000612ba8 in __inet_addr_add (param=0x7fffffffd120) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1263
+#7  inet_addr_add (flags=<optimized out>, scope=<optimized out>, prefered_lft=<optimized out>, valid_lft=<optimized out>, 
+    bcast=0x137600444, plen=<optimized out>, addr=0x137600434, dev=<optimized out>, af=<optimized out>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1300
+#8  ifa_sockopt_set (opt=<optimized out>, conf=0x137600418, size=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1673
+#9  0x0000000000604167 in sockopt_ctl (arg=0x0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:1371
+#10 sockopt_job_func (dummy=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:1411
+#11 0x000000000067d8e7 in do_lcore_job (job=0x97a680 <sockopt_job>, job=0x97a680 <sockopt_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#12 dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#13 0x000000000040ecc5 in main (argc=<optimized out>, argv=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/main.c:338
+(gdb) p *pmsg
+$99 = (struct dpvs_msg *) 0x135584c8c
+(gdb) p **pmsg
+$100 = {mq_node = {next = 0x0, prev = 0x0}, type = 6, seq = 2, mode = DPVS_MSG_MULTICAST, cid = 0 '\000', flags = 1, refcnt = {cnt = 2}, 
+  lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 85, data = 0x135584cd0 ""}
+(gdb) c
+Continuing.
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x7fffffffce80) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x7fffffffce80) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x000000000060687c in multicast_msg_send (msg=0x13558518c, flags=flags@entry=1, reply=reply@entry=0x0)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:584
+#2  0x000000000067b961 in route_add_del (metric=0, mtu=0, src=0x1376002ec, port=<optimized out>, gw=0x0, flag=<optimized out>, 
+    netmask=<optimized out>, dest=0x7fffffffd060, add=true) at /root/dpdk-dpvs/dpvs/dpvs/src/route.c:386
+#3  route_add (dest=dest@entry=0x7fffffffd060, netmask=<optimized out>, flag=flag@entry=1024, gw=gw@entry=0x0, port=0x10587cc40, 
+    src=src@entry=0x1376002ec, mtu=mtu@entry=0, metric=metric@entry=0) at /root/dpdk-dpvs/dpvs/dpvs/src/route.c:399
+#4  0x00000000006105f1 in ifa_add_route4 (ifa=0x1376002c0) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:557
+#5  ifa_add_route (ifa=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:608
+#6  ifa_entry_add (param=param@entry=0x7fffffffd120) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:846
+#7  0x0000000000612ba8 in __inet_addr_add (param=0x7fffffffd120) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1263
+#8  inet_addr_add (flags=<optimized out>, scope=<optimized out>, prefered_lft=<optimized out>, valid_lft=<optimized out>, 
+    bcast=0x137600444, plen=<optimized out>, addr=0x137600434, dev=<optimized out>, af=<optimized out>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1300
+#9  ifa_sockopt_set (opt=<optimized out>, conf=0x137600418, size=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1673
+#10 0x0000000000604167 in sockopt_ctl (arg=0x0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:1371
+#11 sockopt_job_func (dummy=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:1411
+#12 0x000000000067d8e7 in do_lcore_job (job=0x97a680 <sockopt_job>, job=0x97a680 <sockopt_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#13 dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#14 0x000000000040ecc5 in main (argc=<optimized out>, argv=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/main.c:338
+(gdb) p *pmsg
+$101 = (struct dpvs_msg *) 0x135584a0c
+(gdb) p **pmsg
+$102 = {mq_node = {next = 0x0, prev = 0x0}, type = 6, seq = 3, mode = DPVS_MSG_UNICAST, cid = 0 '\000', flags = 1, refcnt = {cnt = 2}, 
+  lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 85, data = 0x135584a50 ""}
+(gdb) c
+Continuing.
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x7fffffffcf20) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x7fffffffcf20) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x000000000067b96f in route_add_del (metric=0, mtu=0, src=0x1376002ec, port=<optimized out>, gw=0x0, flag=<optimized out>, 
+    netmask=<optimized out>, dest=0x7fffffffd060, add=true) at /root/dpdk-dpvs/dpvs/dpvs/src/route.c:390
+#2  route_add (dest=dest@entry=0x7fffffffd060, netmask=<optimized out>, flag=flag@entry=1024, gw=gw@entry=0x0, port=0x10587cc40, 
+    src=src@entry=0x1376002ec, mtu=mtu@entry=0, metric=metric@entry=0) at /root/dpdk-dpvs/dpvs/dpvs/src/route.c:399
+#3  0x00000000006105f1 in ifa_add_route4 (ifa=0x1376002c0) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:557
+#4  ifa_add_route (ifa=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:608
+#5  ifa_entry_add (param=param@entry=0x7fffffffd120) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:846
+#6  0x0000000000612ba8 in __inet_addr_add (param=0x7fffffffd120) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1263
+#7  inet_addr_add (flags=<optimized out>, scope=<optimized out>, prefered_lft=<optimized out>, valid_lft=<optimized out>, 
+    bcast=0x137600444, plen=<optimized out>, addr=0x137600434, dev=<optimized out>, af=<optimized out>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1300
+#8  ifa_sockopt_set (opt=<optimized out>, conf=0x137600418, size=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1673
+#9  0x0000000000604167 in sockopt_ctl (arg=0x0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:1371
+#10 sockopt_job_func (dummy=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:1411
+#11 0x000000000067d8e7 in do_lcore_job (job=0x97a680 <sockopt_job>, job=0x97a680 <sockopt_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#12 dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#13 0x000000000040ecc5 in main (argc=<optimized out>, argv=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/main.c:338
+(gdb) p *pmsg
+$103 = (struct dpvs_msg *) 0x13558518c
+(gdb) p **pmsg
+$104 = {mq_node = {next = 0x0, prev = 0x0}, type = 6, seq = 3, mode = DPVS_MSG_MULTICAST, cid = 0 '\000', flags = 1, refcnt = {cnt = 2}, 
+  lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 85, data = 0x1355851d0 ""}
+(gdb) c
+Continuing.
+[Switching to Thread 0x7ffff5404700 (LWP 57125)]
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x7ffff54016c0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x7ffff54016c0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x0000000000605d67 in msg_slave_process (step=0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:793
+#2  0x000000000067d8e7 in do_lcore_job (job=0x97a700 <msg_slave_job>, job=0x97a700 <msg_slave_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#3  dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#4  0x000000000055a744 in eal_thread_loop ()
+#5  0x00007ffff6e14ea5 in start_thread () from /lib64/libpthread.so.0
+#6  0x00007ffff69319fd in clone () from /lib64/libc.so.6
+(gdb) p *pmsg
+$105 = (struct dpvs_msg *) 0x135584f0c
+(gdb) p **pmsg
+$106 = {mq_node = {next = 0x0, prev = 0x0}, type = 6, seq = 2, mode = DPVS_MSG_UNICAST, cid = 0 '\000', flags = 25, refcnt = {cnt = 1}, 
+  lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 85, data = 0x135584f50 ""}
+(gdb) c
+Continuing.
+[Switching to Thread 0x7ffff7fddd80 (LWP 57119)]
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x7fffffffd080) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x7fffffffd080) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x000000000060687c in multicast_msg_send (msg=0x1355848cc, flags=flags@entry=1, reply=reply@entry=0x0)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:584
+#2  0x0000000000612c01 in __inet_addr_add (param=0x7fffffffd120) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1274
+#3  inet_addr_add (flags=<optimized out>, scope=<optimized out>, prefered_lft=<optimized out>, valid_lft=<optimized out>, 
+    bcast=0x137600444, plen=<optimized out>, addr=0x137600434, dev=<optimized out>, af=<optimized out>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1300
+#4  ifa_sockopt_set (opt=<optimized out>, conf=0x137600418, size=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1673
+#5  0x0000000000604167 in sockopt_ctl (arg=0x0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:1371
+#6  sockopt_job_func (dummy=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:1411
+#7  0x000000000067d8e7 in do_lcore_job (job=0x97a680 <sockopt_job>, job=0x97a680 <sockopt_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#8  dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#9  0x000000000040ecc5 in main (argc=<optimized out>, argv=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/main.c:338
+(gdb) p *pmsg
+$107 = (struct dpvs_msg *) 0x13558478c
+(gdb) p **pmsg
+$108 = {mq_node = {next = 0x0, prev = 0x0}, type = 23, seq = 1, mode = DPVS_MSG_UNICAST, cid = 0 '\000', flags = 1, refcnt = {cnt = 2}, 
+  lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 72, data = 0x1355847d0 "\002"}
+(gdb) c
+Continuing.
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x7fffffffd100) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x7fffffffd100) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x0000000000612d4a in __inet_addr_del (param=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1361
+#2  inet_addr_del (plen=<optimized out>, addr=<optimized out>, dev=<optimized out>, af=<optimized out>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1380
+#3  ifa_sockopt_set (opt=<optimized out>, conf=0x137600418, size=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/inetaddr.c:1683
+#4  0x0000000000604167 in sockopt_ctl (arg=0x0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:1371
+#5  sockopt_job_func (dummy=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:1411
+#6  0x000000000067d8e7 in do_lcore_job (job=0x97a680 <sockopt_job>, job=0x97a680 <sockopt_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#7  dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#8  0x000000000040ecc5 in main (argc=<optimized out>, argv=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/main.c:338
+(gdb) p *pmsg
+$109 = (struct dpvs_msg *) 0x1355848cc
+(gdb) p **pmsg
+$110 = {mq_node = {next = 0x0, prev = 0x0}, type = 23, seq = 1, mode = DPVS_MSG_MULTICAST, cid = 0 '\000', flags = 1, refcnt = {
+    cnt = 2}, lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 72, data = 0x135584910 "\002"}
+(gdb) c
+Continuing.
+[Switching to Thread 0x7ffff5404700 (LWP 57125)]
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x7ffff54016e0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x7ffff54016e0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x0000000000605f6a in msg_slave_process (step=0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:784
+#2  0x000000000067d8e7 in do_lcore_job (job=0x97a700 <msg_slave_job>, job=0x97a700 <msg_slave_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#3  dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#4  0x000000000055a744 in eal_thread_loop ()
+#5  0x00007ffff6e14ea5 in start_thread () from /lib64/libpthread.so.0
+#6  0x00007ffff69319fd in clone () from /lib64/libc.so.6
+(gdb) p *pmsg
+$111 = (struct dpvs_msg *) 0x135001a8c
+(gdb) p **pmsg
+$112 = {mq_node = {next = 0x0, prev = 0x0}, type = 6, seq = 3, mode = DPVS_MSG_UNICAST, cid = 1 '\001', flags = 1, refcnt = {cnt = 2}, 
+  lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 0, data = 0x135001ad0 ""}
+(gdb) c
+Continuing.
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x7ffff54016c0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x7ffff54016c0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x0000000000605d67 in msg_slave_process (step=0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:793
+#2  0x000000000067d8e7 in do_lcore_job (job=0x97a700 <msg_slave_job>, job=0x97a700 <msg_slave_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#3  dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#4  0x000000000055a744 in eal_thread_loop ()
+#5  0x00007ffff6e14ea5 in start_thread () from /lib64/libpthread.so.0
+#6  0x00007ffff69319fd in clone () from /lib64/libc.so.6
+(gdb) p *pmsg
+$113 = (struct dpvs_msg *) 0x135584a0c
+(gdb) p **pmsg
+$114 = {mq_node = {next = 0x0, prev = 0x0}, type = 6, seq = 3, mode = DPVS_MSG_UNICAST, cid = 0 '\000', flags = 25, refcnt = {cnt = 1}, 
+  lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 85, data = 0x135584a50 ""}
+(gdb) c
+Continuing.
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x7ffff54016e0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x7ffff54016e0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x0000000000605f6a in msg_slave_process (step=0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:784
+#2  0x000000000067d8e7 in do_lcore_job (job=0x97a700 <msg_slave_job>, job=0x97a700 <msg_slave_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#3  dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#4  0x000000000055a744 in eal_thread_loop ()
+#5  0x00007ffff6e14ea5 in start_thread () from /lib64/libpthread.so.0
+#6  0x00007ffff69319fd in clone () from /lib64/libc.so.6
+(gdb) p *pmsg
+$115 = (struct dpvs_msg *) 0x135001b4c
+(gdb) p **pmsg
+$116 = {mq_node = {next = 0x0, prev = 0x0}, type = 23, seq = 1, mode = DPVS_MSG_UNICAST, cid = 1 '\001', flags = 1, refcnt = {cnt = 2}, 
+  lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 0, data = 0x135001b90 ""}
+(gdb) c
+Continuing.
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x7ffff54016c0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x7ffff54016c0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x0000000000605d67 in msg_slave_process (step=0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:793
+#2  0x000000000067d8e7 in do_lcore_job (job=0x97a700 <msg_slave_job>, job=0x97a700 <msg_slave_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#3  dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#4  0x000000000055a744 in eal_thread_loop ()
+#5  0x00007ffff6e14ea5 in start_thread () from /lib64/libpthread.so.0
+#6  0x00007ffff69319fd in clone () from /lib64/libc.so.6
+(gdb) p *pmsg
+$117 = (struct dpvs_msg *) 0x13558478c
+(gdb) p **pmsg
+$118 = {mq_node = {next = 0x0, prev = 0x0}, type = 23, seq = 1, mode = DPVS_MSG_UNICAST, cid = 0 '\000', flags = 25, refcnt = {cnt = 1}, 
+  lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 72, data = 0x1355847d0 "\002"}
+(gdb) c
+Continuing.
+[Switching to Thread 0x7ffff7fddd80 (LWP 57119)]
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x13500192c) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x13500192c) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x00000000006059ac in msg_master_process (step=0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:697
+#2  0x000000000067d8e7 in do_lcore_job (job=0x97a780 <msg_master_job>, job=0x97a780 <msg_master_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#3  dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#4  0x000000000040ecc5 in main (argc=<optimized out>, argv=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/main.c:338
+(gdb) p *pmsg
+$119 = (struct dpvs_msg *) 0x135584c8c
+(gdb) p **pmsg
+$120 = {mq_node = {next = 0x0, prev = 0x0}, type = 6, seq = 2, mode = DPVS_MSG_MULTICAST, cid = 0 '\000', flags = 17, refcnt = {
+    cnt = 1}, lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 85, data = 0x135584cd0 ""}
+(gdb) c
+Continuing.
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x7fffffffce60) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x7fffffffce60) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x00000000006054d1 in msg_destroy (pmsg=pmsg@entry=0x13500192c) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:421
+#2  0x00000000006059ac in msg_master_process (step=0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:697
+#3  0x000000000067d8e7 in do_lcore_job (job=0x97a780 <msg_master_job>, job=0x97a780 <msg_master_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#4  dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#5  0x000000000040ecc5 in main (argc=<optimized out>, argv=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/main.c:338
+(gdb) p *pmsg
+$121 = (struct dpvs_msg *) 0x1350019cc
+(gdb) p **pmsg
+$122 = {mq_node = {next = 0x1350019cc, prev = 0x1350019cc}, type = 6, seq = 2, mode = DPVS_MSG_UNICAST, cid = 1 '\001', flags = 29, 
+  refcnt = {cnt = 1}, lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 0, data = 0x135001a10 ""}
+(gdb) c
+Continuing.
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x13500186c) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x13500186c) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x00000000006059ac in msg_master_process (step=0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:697
+#2  0x000000000067d8e7 in do_lcore_job (job=0x97a780 <msg_master_job>, job=0x97a780 <msg_master_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#3  dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#4  0x000000000040ecc5 in main (argc=<optimized out>, argv=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/main.c:338
+(gdb) p *pmsg
+$123 = (struct dpvs_msg *) 0x13558518c
+(gdb) p **pmsg
+$124 = {mq_node = {next = 0x0, prev = 0x0}, type = 6, seq = 3, mode = DPVS_MSG_MULTICAST, cid = 0 '\000', flags = 17, refcnt = {
+    cnt = 1}, lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 85, data = 0x1355851d0 ""}
+(gdb) c
+Continuing.
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x7fffffffce60) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x7fffffffce60) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x00000000006054d1 in msg_destroy (pmsg=pmsg@entry=0x13500186c) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:421
+#2  0x00000000006059ac in msg_master_process (step=0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:697
+#3  0x000000000067d8e7 in do_lcore_job (job=0x97a780 <msg_master_job>, job=0x97a780 <msg_master_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#4  dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#5  0x000000000040ecc5 in main (argc=<optimized out>, argv=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/main.c:338
+(gdb) p *pmsg
+$125 = (struct dpvs_msg *) 0x135001a8c
+(gdb) p **pmsg
+$126 = {mq_node = {next = 0x135001a8c, prev = 0x135001a8c}, type = 6, seq = 3, mode = DPVS_MSG_UNICAST, cid = 1 '\001', flags = 29, 
+  refcnt = {cnt = 1}, lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 0, data = 0x135001ad0 ""}
+(gdb) c
+Continuing.
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x1350017ac) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x1350017ac) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x00000000006059ac in msg_master_process (step=0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:697
+#2  0x000000000067d8e7 in do_lcore_job (job=0x97a780 <msg_master_job>, job=0x97a780 <msg_master_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#3  dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#4  0x000000000040ecc5 in main (argc=<optimized out>, argv=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/main.c:338
+(gdb) p *pmsg
+$127 = (struct dpvs_msg *) 0x1355848cc
+(gdb) p **pmsg
+$128 = {mq_node = {next = 0x0, prev = 0x0}, type = 23, seq = 1, mode = DPVS_MSG_MULTICAST, cid = 0 '\000', flags = 17, refcnt = {
+    cnt = 1}, lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 72, data = 0x135584910 "\002"}
+(gdb) c
+Continuing.
+
+Breakpoint 1, msg_destroy (pmsg=pmsg@entry=0x7fffffffce60) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+392     {
+(gdb) bt
+#0  msg_destroy (pmsg=pmsg@entry=0x7fffffffce60) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:392
+#1  0x00000000006054d1 in msg_destroy (pmsg=pmsg@entry=0x1350017ac) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:421
+#2  0x00000000006059ac in msg_master_process (step=0) at /root/dpdk-dpvs/dpvs/dpvs/src/ctrl.c:697
+#3  0x000000000067d8e7 in do_lcore_job (job=0x97a780 <msg_master_job>, job=0x97a780 <msg_master_job>)
+    at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:165
+#4  dpvs_job_loop (arg=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/scheduler.c:213
+#5  0x000000000040ecc5 in main (argc=<optimized out>, argv=<optimized out>) at /root/dpdk-dpvs/dpvs/dpvs/src/main.c:338
+(gdb) p *pmsg
+$129 = (struct dpvs_msg *) 0x135001b4c
+(gdb) p **pmsg
+$130 = {mq_node = {next = 0x135001b4c, prev = 0x135001b4c}, type = 23, seq = 1, mode = DPVS_MSG_UNICAST, cid = 1 '\001', flags = 29, 
+  refcnt = {cnt = 1}, lock = {locked = 0}, reply = {len = 0, data = 0x0}, len = 0, data = 0x135001b90 ""}
+(gdb) c
+Continuing.
