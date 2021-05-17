@@ -1,0 +1,35 @@
+1. gdb dpvs
+2. r运行dpvs
+3. b msg_destroy
+4. push config in another screen: "./dpip addr add 192.168.50.101/23 dev dpdk0"
+5. insert below commands until no break can be catched:
+   bt
+   p *pmsg
+   p **pmsg
+   c
+6. the output is "dpvs msg_destroy between AP.log"
+7. the detail analysis
+   6 ~ 34: master发送local实例 0x135584f0c
+   36 ~ 54: slave发送local reply对象 0x1350019cc
+   56 ~ 84: master回收local对象stage1 0x135584c8c
+   86 ~ 116: master发送net实例
+   118 ~ 147: master回收net对象stage1
+   149 ~ 166: slave回收local实例 0x135584f0c
+   169 ~ 192: master发送ifa实例
+   194 ~ 214: master回收ifa对象stage1
+   217 ~ 234: slave发送net reply对象
+   236 ~ 253: slave回收net实例
+   255 ~ 272: slave发送ifa reply对象
+   274 ~ 291: slave回收ifa实例
+   294 ~ 309: master回收local对象stage2 0x135584c8c
+   311 ~ 327: master回收local reply对象 0x1350019cc
+   329 ~ 344: master回收net对象stage2
+   346 ~ 362: master回收net reply对象
+   364 ~ 379: master回收ifa对象stage2
+   381 ~ 397: master回收ifa reply对象
+8. conclusion
+   a> msg_destroy recycle the msg only if the msg->refcnt is 0;
+   b> every multicast msg trigger 6 breaks, 4 of them are on master, while the left 2 are on slave;
+   c> master will use an object to record the msg, while generate several instances to send them to slave (in this case, there is only 1 slave, so only one instance will be seen);
+   d> slave will generate a reply msg to master, and recycle the msg received;
+   e> master will receive the reply and utilize it to find the object, then it will recycle the object and the reply
