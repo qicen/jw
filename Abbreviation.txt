@@ -1,0 +1,195 @@
+------------------------------
+http://blog.chinaunix.net/uid-22746363-id-384008.html
+https://blog.csdn.net/Amdy_amdy/article/details/105236528
+tty------------------------------Teletypes or teletypewriters
+电传打字机，是通过串行线用打印机键盘通过阅读和发送信息的东西，后来这东西被键盘与显示器取代，所以现在叫终端比较合适。
+但是如果我们远程telnet到主机或使用xterm时不也需要一个终端交互么？是的，这就是虚拟终端pty
+
+pty------------------------------pseudo-tty
+
+pts------------------------------pseudo-terminal slave是pty的实现方法，与ptmx配合使用实现pty
+
+ptmx-----------------------------pseudo-terminal master
+
+ttySn----------------------------Serial Port Terminal串行端口终端,每个串行端口都看作是一个字符设备,这些串行端口所对应的设备名称是/dev/tts/0(或/dev/ttyS0), /dev/tts/1(或/dev/ttyS1), 设备号分别是(4,0), (4,1)等，分别对应于DOS系统下的COM1、COM2等
+
+Q：关于终端和控制台的区别可以参考哪些文本
+A: 可以参考内核文档中的 Documents/devices.txt 中关于”TERMINAL DEVICES” 的章节。另外，《Linux内核源代码情景分析》的8.7节 以及《Operating Systems : Design and Implementation》中的3.9节(第3版中为3.8节)都对终端设备的概念和历史做了很好的介绍。另外在《Modern Operating System》中也有对终端设备的介绍，由于与《Operating Systems : Design and Implementation》的作者相同，所以文本内容也大致相同。需要注意的一点是《Operating Systems : Design and Implementation》中将终端设备分为3类，而《Modern Operating System》将终端硬件设备分为2类，差别在于前者将 X Terminal作为一个类别。
+
+
+
+SPD------------------------------Security Policy Database
+
+SPI------------------------------Sequence Policy Index
+
+PFS------------------------------Perfect Forward Secrecy
+
+VPN------------------------------Virtual Private Network
+tunnel technique used:GRE, L2TP, IPSec
+
+confidentiality
+symmetric key encryption:DES, 3DES, AES
+asymmetric key encryption:RSA, DH
+
+integrity
+Hash function:MD5, SHA
+
+HMAC------------------------------Hashing Message Authentication Code
+adds a secret pre-shared key to the hashing process
+
+DH------------------------------Diffie-Hellman
+Key exchange algorithm
+
+IPSec------------------------------IP Security
+uses two protocols to provide traffic security:ESP, AH
+
+ESP------------------------------Encapsulation Security Payload
+uses symmetric key algorithms and hash methods
+
+AH------------------------------Authentication header
+uses hash methods
+
+SPI------------------------------Security Parameter Index
+
+IKE------------------------------Internet Key Exchange
+
+SA------------------------------Security Associations
+are set of policies and keys used to protect information between two peers. uniquely identified by SPI value, tunnel destination address, and the security protocol
+
+SLT------------------------------Service Layer Technologies
+The Product Group responsible for firewall/VPN, SSL VPN, IDP, WAN optimization, and enterprise routing products. Initially created from the acquisition of NetScreen Technologies in 2004.
+
+AV-------------------------------Anti-virus
+
+DI-------------------------------Deep inspection
+
+IDP------------------------------Intrusion detection and prevention system
+
+DIP------------------------------Dynamic IP pool
+
+PIT------------------------------Programmable Interrupt Timer
+
+CSP------------------------------Customer Service Patch
+
+vsi------------------------------Virtual security interface
+NSRP
+
+vsd------------------------------virtual security device
+
+nsp------------------------------session wing pointer
+
+Session token is used to identify the session which have the same 5 tuples but in different vsys. 
+
+PIT------------------------------Programmable Interrupt Timer
+In almost all the ScreenOS platforms, there's only one interrupt called Programmable Interrupt Timer (PIT)
+
+PBR------------------------------Policy-Based Routing
+
+DSCP-----------------------------Differentiated Service Code Point
+
+local_pak_t->rbd_index-----------refer to type of allocated packet buffer
+
+PTO------------------------------Packet ordering thread(Maybe)
+
+LBT------------------------------Load balance thread
+
+LICU-----------------------------Low Impact Cluster Update
+
+OE-------------------------------Operational Excellence
+
+RMS------------------------------Rule Management System
+
+CSP------------------------------Customer Service patch
+
+RCCA-----------------------------Root Cause Corrective Action 
+
+DSP------------------------------Digital signal processor
+
+CPI------------------------------Cycles per instruction
+
+VLIW-----------------------------Very long instruction word
+
+WRT------------------------------With Regard To
+
+ISS------------------------------Initial send sequence
+
+CFM------------------------------Common Form-factor Modules
+
+
+what's ?
+
+PFE
+
+PFEman
+
+RTUX
+
+DPQ
+
+JDI------------------------------Juniper Development Innovation
+
+AKA
+
+ToR???
+
+TVP------------------------------ToR Velocity Program
+PVI------------------------------Platform Velocity Initiative
+
+JDM------------------------------Juniper Device Manager
+
+PI-------------------------------Platform independent
+
+PD-------------------------------Platform dependent
+
+JET------------------------------Junos Extension toolkit. Control plane APIs for junos
+
+
+Porter
+qfx
+
+VNF
+
+USF------------------------------Unified Services Framework
+
+TCO------------------------------Total Cost of Ownership，即总拥有成本，包括产品采购到后期使用、维护的成本。这是一种公司经常采用的技术评价标准。
+
+MTBF------------------------------Mean Time Between Failures 平均故障间隔时间
+
+IOE------------------------------IBM oracle EMC
+
+NUMA------------------------------Non Uniform Memory Access Architecture 非同一内存访问
+
+pgd------------------------------page global directory
+
+REST API-------------------------Representational State Transfer API
+
+NFV------------------------------Network Function Virtualization
+NFV架构包括以下模块：
+NFVI-----------------------------网络功能虚拟化基础设施
+VNF------------------------------Virtual Network Feature
+NFV M&O--------------------------NFV管理与编排
+
+DPACC----------------------------数据面加速
+
+ODP------------------------------Open Data Plane
+
+GOT------------------------------Global Offset table
+
+PLT------------------------------Procedure Link table
+
+QSBR-----------------------------quiescent state-based reclamation
+
+SSRF-----------------------------server side request forgery
+
+NP-complete----------------------non-deterministic polynomial
+
+Bar(Bars)------------------------Base Address Registers
+
+TSO------------------------------Transmit Segmentation Offload
+
+CI/CD----------------------------continuous integration / continuous delivery
+     The push triggers a build stage that transforms the code into a binary artifact. The work is implemented with a Continuous Integration (CI) pipeline. It automatically builds, tests, and packages the application.
+     The release stage picks up the binary artifact, applies external application and environment configuration information, and produces an immutable release. The release is deployed to a specified environment. The work is implemented with a Continuous Delivery (CD) pipeline. Each release should be identifiable. You can say, "This deployment is running Release 2.1.1 of the application."
+
+
+VDSO-----------------------------Virtual Dynamically-linked Shared Object
